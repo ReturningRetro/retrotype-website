@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RetroType Keyboard: coming soon</title>
+<meta name="description" content="RetroType Keyboard brings the great typing of classic keyboard phones to modern Android. No tracking, no ads, no internet access. Coming soon from Returning Retro.">
+<meta property="og:title" content="RetroType Keyboard: coming soon">
+<meta property="og:description" content="The typing you remember from classic keyboard phones, rebuilt for modern Android. Coming soon from Returning Retro.">
+<meta property="og:image" content="https://retrotype.app/assets/icon.png">
+<meta property="og:url" content="https://retrotype.app/">
+<meta name="theme-color" content="#06263a">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+  @font-face {
+    font-family: "Inter Display";
+    src: url("assets/InterDisplay-ExtraBold.otf") format("opentype");
+    font-weight: 800;
+    font-display: swap;
+  }
+
+  :root {
+    --deep: #06263a;      /* the icon's outer teal */
+    --glow: #18809f;      /* the icon's inner glow */
+    --cap: #2b3036;       /* keycap face */
+    --cap-edge: #15181c;  /* keycap side */
+    --ink: #eef4f3;       /* key labels and text */
+    --soft: #b4cdd2;      /* secondary text, 8:1 on --deep */
+    --bar: #3cc4ef;       /* the blue bar under "RTK" */
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "Inter Display", var(--body);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--deep); }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--body);
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 0%, rgba(24,128,159,.55), transparent 70%),
+      radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.4px) 0 0 / 14px 14px,
+      var(--deep);
+  }
+
+  a { color: var(--bar); text-underline-offset: .18em; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--bar); outline-offset: 3px; border-radius: 4px; }
+
+  main { max-width: 42rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- Hero: the name typed out on keycaps ---------- */
+  .hero { padding: clamp(4rem, 12vh, 8rem) 0 3rem; text-align: center; }
+
+  .keys {
+    display: flex;
+    justify-content: center;
+    gap: clamp(4px, 1.2vw, 9px);
+    margin: 0 0 2.25rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .key {
+    --size: clamp(30px, 9.2vw, 60px);
+    width: var(--size);
+    height: calc(var(--size) * 1.08);
+    display: grid;
+    place-items: center;
+    border-radius: calc(var(--size) * .2);
+    background: linear-gradient(180deg, #3a4048 0%, var(--cap) 55%, #24282d 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.14),
+      0 calc(var(--size) * .1) 0 var(--cap-edge),
+      0 calc(var(--size) * .16) calc(var(--size) * .22) rgba(0,0,0,.45);
+    font: 800 calc(var(--size) * .46)/1 var(--display);
+    color: var(--ink);
+    animation: press .32s ease-out both;
+    animation-delay: calc(var(--i) * 95ms + 300ms);
+  }
+
+  /* The last key carries the icon's blue bar */
+  .key:last-child { position: relative; }
+  .key:last-child::after {
+    content: "";
+    position: absolute;
+    left: 22%; right: 22%; bottom: 16%;
+    height: max(2px, calc(var(--size) * .055));
+    border-radius: 2px;
+    background: var(--bar);
+    box-shadow: 0 0 8px rgba(60,196,239,.7);
+  }
+
+  @keyframes press {
+    0%   { transform: translateY(0); }
+    45%  { transform: translateY(calc(var(--size) * .08));
+           box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 calc(var(--size) * .02) 0 var(--cap-edge), 0 calc(var(--size) * .05) calc(var(--size) * .1) rgba(0,0,0,.4); }
+    100% { transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .key { animation: none; }
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    font: 800 clamp(1.9rem, 5.5vw, 2.75rem)/1.1 var(--display);
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .lede { margin: 0 auto 2rem; text-wrap: pretty; max-width: 34rem; color: var(--soft); font-size: 1.1875rem; }
+
+  .notify {
+    display: inline-block;
+    padding: .9rem 1.6rem;
+    border-radius: 12px;
+    background: var(--bar);
+    color: var(--deep);
+    font: 800 1.0625rem/1 var(--display);
+    text-decoration: none;
+    box-shadow: 0 4px 0 #1b7fa1;
+  }
+  .notify:hover { color: var(--deep); background: #6fd6f5; }
+  .notify:active { transform: translateY(3px); box-shadow: 0 1px 0 #1b7fa1; }
+
+  .small { margin: .9rem 0 0; color: var(--soft); font-size: .9375rem; }
+
+  /* ---------- Body sections ---------- */
+  section { padding: 2.5rem 0; border-top: 1px solid rgba(180,205,210,.18); }
+
+  h2 { margin: 0 0 1rem; font: 800 1.5rem/1.25 var(--display); }
+
+  p { margin: 0 0 1rem; }
+
+  .facts { margin: 0; padding: 0; list-style: none; }
+  .facts li { padding: .55rem 0 .55rem 1.6rem; position: relative; }
+  .facts li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.05rem;
+    width: .7rem; height: .7rem;
+    border-radius: 3px;
+    background: var(--bar);
+    box-shadow: 0 2px 0 #1b7fa1;
+  }
+  .facts strong { font-family: var(--display); font-weight: 800; }
+
+  .signoff { margin-top: 1.5rem; font-family: var(--display); font-weight: 800; }
+
+  footer {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid rgba(180,205,210,.18);
+    color: var(--soft);
+    font-size: .9375rem;
+  }
+  .wrap { padding: 0 1.5rem; }
+  footer ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <ol class="keys" aria-hidden="true">
+      <li class="key" style="--i:0">R</li>
+      <li class="key" style="--i:1">E</li>
+      <li class="key" style="--i:2">T</li>
+      <li class="key" style="--i:3">R</li>
+      <li class="key" style="--i:4">O</li>
+      <li class="key" style="--i:5">T</li>
+      <li class="key" style="--i:6">Y</li>
+      <li class="key" style="--i:7">P</li>
+      <li class="key" style="--i:8">E</li>
+    </ol>
+    <h1>RetroType Keyboard is coming soon</h1>
+    <p class="lede">The typing you remember from classic keyboard phones, rebuilt for the keyboard phones of today.</p>
+    <a class="notify" id="notify" href="https://returningretro.gumroad.com/subscribe">Get notified at launch</a>
+    <p class="small">One email when it's ready. No spam.</p>
+  </header>
+
+  <section aria-labelledby="story">
+    <h2 id="story">Why I made it</h2>
+    <p>Physical keyboards went from being the standard on phones to a clunky, retrofitted mix of hardware and software. The existing keyboard apps were okay, but nothing came close to the typing that was so common just a few years ago.</p>
+    <p>That reached a breaking point for me when a prototype QWERTY phone landed on my desk with no keyboard optimizations at all. So I decided to make my own. It turned out better than I ever imagined, so I added support for more phones and decided to share it with anyone who might enjoy it or benefit from it.</p>
+    <p>I've used these phones in their day, I use the modern ones now, and I've used just about everything in between. RetroType is built from that experience.</p>
+  </section>
+
+  <section aria-labelledby="who">
+    <h2 id="who">Who it's for</h2>
+    <p>People who remember the good old days of physical keyboard phones, people who want a modern keyboard phone that types the way it should, or both.</p>
+  </section>
+
+  <section aria-labelledby="promise">
+    <h2 id="promise">What you can count on</h2>
+    <ul class="facts">
+      <li><strong>No tracking.</strong> RetroType doesn't monitor what you type or collect any data.</li>
+      <li><strong>No internet access.</strong> The app can't go online at all. Your words stay on your phone.</li>
+      <li><strong>No ads.</strong> Not now, not ever.</li>
+      <li><strong>Made by one person.</strong> Just me, with help from a small group of testers.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="spirit">
+    <h2 id="spirit">The Returning Retro way</h2>
+    <p>RetroType is made in the spirit of Returning Retro: using technology intentionally instead of compulsively, and bringing back technology that should never have been left behind in the first place.</p>
+    <p class="signoff">Retro Jake</p>
+  </section>
+</main>
+
+<div class="wrap"><footer>
+  <ul>
+    <li><a href="https://www.youtube.com/@ReturningRetro">Returning Retro on YouTube</a></li>
+    <li><a href="https://www.reddit.com/r/ReturningRetro">r/ReturningRetro on Reddit</a></li>
+    <li><a href="mailto:retrotype@returningretro.com">retrotype@returningretro.com</a></li>
+  </ul>
+  <p>RetroType Keyboard is made by Returning Retro. It isn't affiliated with or endorsed by any phone maker.</p>
+</footer></div>
+</body>
+</html>
