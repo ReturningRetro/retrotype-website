@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get your Keyholder code: RetroType Keyboard</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#06263a">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<style>
+  @font-face {
+    font-family: "Inter Display";
+    src: url("../assets/InterDisplay-ExtraBold.otf") format("opentype");
+    font-weight: 800;
+    font-display: swap;
+  }
+  :root {
+    --deep: #06263a; --glow: #18809f; --cap: #2b3036; --cap-edge: #15181c;
+    --ink: #eef4f3; --soft: #b4cdd2; --bar: #3cc4ef; --bad: #ffb0b0;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "Inter Display", var(--body);
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--deep); }
+  body {
+    margin: 0; min-height: 100vh; color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--body);
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 0%, rgba(24,128,159,.55), transparent 70%),
+      radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.4px) 0 0 / 14px 14px,
+      var(--deep);
+  }
+  a { color: var(--bar); text-underline-offset: .18em; }
+  :focus-visible { outline: 3px solid var(--bar); outline-offset: 3px; border-radius: 4px; }
+  main { max-width: 34rem; margin: 0 auto; padding: clamp(3rem, 10vh, 6rem) 1.5rem 3rem; }
+  .key {
+    width: 56px; height: 60px; display: grid; place-items: center; margin: 0 0 1.5rem;
+    border-radius: 11px; position: relative;
+    background: linear-gradient(180deg, #3a4048 0%, var(--cap) 55%, #24282d 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 6px 0 var(--cap-edge), 0 9px 12px rgba(0,0,0,.45);
+    font: 800 1.6rem/1 var(--display);
+  }
+  .key::after {
+    content: ""; position: absolute; left: 22%; right: 22%; bottom: 16%; height: 3px; border-radius: 2px;
+    background: var(--bar); box-shadow: 0 0 8px rgba(60,196,239,.7);
+  }
+  h1 { margin: 0 0 .75rem; font: 800 clamp(1.8rem, 5vw, 2.4rem)/1.1 var(--display); text-wrap: balance; }
+  .lede { margin: 0 0 2rem; color: var(--soft); }
+  label { display: block; margin: 1.25rem 0 .35rem; font-weight: 600; }
+  .hint { display: block; margin-top: .3rem; color: var(--soft); font-size: .9375rem; font-weight: 400; }
+  input {
+    width: 100%; padding: .8rem .9rem; border-radius: 10px;
+    border: 1px solid rgba(180,205,210,.35); background: rgba(3,25,42,.85);
+    color: var(--ink); font: inherit;
+  }
+  input:focus { border-color: var(--bar); }
+  button {
+    margin-top: 1.75rem; padding: .9rem 1.6rem; border: 0; border-radius: 12px;
+    background: var(--bar); color: var(--deep); font: 800 1.0625rem/1 var(--display);
+    box-shadow: 0 4px 0 #1b7fa1; cursor: pointer;
+  }
+  button:hover { background: #6fd6f5; }
+  button:active { transform: translateY(3px); box-shadow: 0 1px 0 #1b7fa1; }
+  button:disabled { opacity: .6; cursor: wait; }
+  .check { display: flex; gap: .7rem; align-items: flex-start; margin-top: 1.4rem; font-weight: 400; cursor: pointer; }
+  .check input { width: 1.3rem; height: 1.3rem; margin: .2rem 0 0; flex: none; accent-color: var(--bar); }
+  .error { margin-top: 1.25rem; color: var(--bad); }
+  .result { margin-top: 2rem; padding: 1.25rem; border-radius: 14px; background: rgba(3,25,42,.85); border: 1px solid rgba(60,196,239,.4); }
+  .result h2 { margin: 0 0 .5rem; font: 800 1.35rem/1.2 var(--display); }
+  .code { margin: .75rem 0 0; padding: .8rem; border-radius: 10px; background: #021320; font: .9rem/1.5 ui-monospace, Consolas, monospace; word-break: break-all; user-select: all; }
+  .result ol { margin: 1rem 0 0; padding-left: 1.25rem; }
+  .result li { margin: .3rem 0; }
+  .small { margin-top: 2.5rem; color: var(--soft); font-size: .9375rem; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="key" aria-hidden="true">K</div>
+  <h1>Get your Keyholder code</h1>
+  <p class="lede">Thanks for becoming a Keyholder! Paste the license key from your Gumroad receipt, choose the name RetroType should thank you by, and your code appears right away.</p>
+
+  <form id="form" novalidate>
+    <label for="license">Gumroad license key
+      <span class="hint">It's in your purchase receipt email and on the Gumroad page for RetroType, and looks like XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX.</span>
+    </label>
+    <input id="license" name="license" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+
+    <label for="name">Your name in RetroType
+      <span class="hint">RetroType will say "Thanks for being a Keyholder, <i>name</i>!" A first name or nickname is perfect (up to 24 characters).</span>
+    </label>
+    <input id="name" name="name" maxlength="24" autocomplete="given-name" required>
+
+    <label class="check" for="credits">
+      <input type="checkbox" id="credits" name="credits">
+      <span>List my name in RetroType's Keyholder thank-you list
+        <span class="hint">Shown to everyone on RetroType's About page from the next update. Changed your mind? Claim again with this unticked and you're taken off.</span>
+      </span>
+    </label>
+
+    <button type="submit" id="go">Get my code</button>
+    <p class="error" id="error" role="alert" hidden></p>
+  </form>
+
+  <div class="result" id="result" hidden>
+    <h2 id="thanks">Here's your code</h2>
+    <p class="code" id="code"></p>
+    <p class="hint" id="listed" hidden></p>
+    <button type="button" id="copy">Copy code</button>
+    <ol>
+      <li>Open <b>RetroType</b> (the Keyholder version) on your phone.</li>
+      <li>When it asks for your Keyholder code, paste it in.</li>
+      <li>Enjoy the extras! Keep this code somewhere safe in case you reinstall.</li>
+    </ol>
+  </div>
+
+  <p class="small">Lost your code? Just come back and claim it again with the same license key. Stuck? Email <a href="mailto:retrotype@returningretro.com">retrotype@returningretro.com</a>.<br>
+  This page sends your license key and chosen name only to check your purchase. Nothing is kept, unless you tick the thank-you list box: then just your chosen name is kept, for the list.</p>
+</main>
+
+<script>
+(() => {
+  const CLAIM_URL = "https://rtk-claim.returningretro.workers.dev/claim";
+  const $ = id => document.getElementById(id);
+
+  $("form").addEventListener("submit", async e => {
+    e.preventDefault();
+    $("error").hidden = true;
+    const license = $("license").value.trim();
+    const name = $("name").value.trim();
+    if (!license || !name) { showError("Please fill in both boxes."); return; }
+
+    $("go").disabled = true;
+    $("go").textContent = "Checking…";
+    try {
+      const res = await fetch(CLAIM_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ license_key: license, name, credits: $("credits").checked })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.code) { showError(data.error || "Something went wrong. Please try again."); return; }
+      $("thanks").textContent = "Thanks for being a Keyholder, " + data.name + "!";
+      $("code").textContent = data.code;
+      $("listed").textContent = data.listed ? "You'll be in the Keyholder thank-you list from the next update." : "";
+      $("listed").hidden = !data.listed;
+      $("result").hidden = false;
+      $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch {
+      showError("Couldn't connect. Check your internet connection and try again.");
+    } finally {
+      $("go").disabled = false;
+      $("go").textContent = "Get my code";
+    }
+  });
+
+  $("copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText($("code").textContent);
+      $("copy").textContent = "Copied!";
+    } catch {
+      $("copy").textContent = "Tap and hold the code to copy it";
+    }
+    setTimeout(() => $("copy").textContent = "Copy code", 2500);
+  });
+
+  function showError(msg) { $("error").textContent = msg; $("error").hidden = false; }
+})();
+</script>
+</body>
+</html>
