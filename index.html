@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RetroType Keyboard: coming soon</title>
-<meta name="description" content="RetroType Keyboard brings the great typing of classic keyboard phones to modern Android. No tracking, no ads, no internet access. Coming soon from Returning Retro.">
-<meta property="og:title" content="RetroType Keyboard: coming soon">
-<meta property="og:description" content="The typing you remember from classic keyboard phones, rebuilt for modern Android. Coming soon from Returning Retro.">
+<title>RetroType Keyboard: download</title>
+<meta name="description" content="RetroType Keyboard brings the great typing of classic keyboard phones to modern Android. Free to download. No tracking, no ads, no internet access.">
+<meta property="og:title" content="RetroType Keyboard">
+<meta property="og:description" content="The typing you remember from classic keyboard phones, re-imagined for the Android phones of today. Free from Returning Retro.">
 <meta property="og:image" content="https://retrotype.app/assets/icon.png">
 <meta property="og:url" content="https://retrotype.app/">
 <meta name="theme-color" content="#06263a">
@@ -162,6 +162,38 @@
   }
   .wrap { padding: 0 1.5rem; }
   footer ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+
+  .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .9rem 1rem; }
+  .ghost {
+    display: inline-block;
+    padding: .9rem 1.6rem;
+    border-radius: 12px;
+    border: 2px solid var(--bar);
+    color: var(--ink);
+    font: 800 1.0625rem/1 var(--display);
+    text-decoration: none;
+  }
+  .ghost:hover { color: var(--deep); background: var(--bar); }
+  ol.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+  ol.steps li { padding: .3rem 0; }
+  .note {
+    margin: 1rem 0 0;
+    padding: .9rem 1.1rem;
+    border-left: 4px solid var(--bar);
+    border-radius: 0 10px 10px 0;
+    background: rgba(255,255,255,.05);
+    color: var(--soft);
+    font-size: .9875rem;
+  }
+  .note strong { color: var(--ink); }
+  .phones { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+  .phones li {
+    padding: .35rem .8rem;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #3a4048 0%, var(--cap) 60%, #24282d 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 3px 0 var(--cap-edge);
+    font-size: .975rem;
+  }
 </style>
 </head>
 <body>
@@ -178,22 +210,45 @@
       <li class="key" style="--i:7">P</li>
       <li class="key" style="--i:8">E</li>
     </ol>
-    <h1>RetroType Keyboard is coming soon</h1>
-    <p class="lede">The typing you remember from classic keyboard phones, rebuilt for the keyboard phones of today.</p>
-    <a class="notify" id="notify" href="https://returningretro.gumroad.com/subscribe">Get notified at launch</a>
-    <p class="small">One email when it's ready. No spam.</p>
+    <h1>RetroType Keyboard is here</h1>
+    <p class="lede">The typing you remember from classic keyboard phones, re-imagined for the Android phones of today.</p>
+    <div class="btns">
+      <a class="notify" href="https://github.com/ReturningRetro/RetroType/releases/latest">Download RetroType (free)</a>
+      <a class="ghost" href="keyholder/">Become a Keyholder</a>
+    </div>
+    <p class="small">Free. No account, no sign-up. Android 12 or newer.</p>
   </header>
 
-  <section aria-labelledby="story">
-    <h2 id="story">Why I made it</h2>
-    <p>Physical keyboards went from being the standard on phones to a clunky, retrofitted mix of hardware and software. The existing keyboard apps were okay, but nothing came close to the typing that was so common just a few years ago.</p>
-    <p>That reached a breaking point for me when a prototype QWERTY phone landed on my desk with no keyboard optimizations at all. So I decided to make my own. It turned out better than I ever imagined, so I added support for more phones and decided to share it with anyone who might enjoy it or benefit from it.</p>
-    <p>I've used these phones in their day, I use the modern ones now, and I've used just about everything in between. RetroType is built from that experience.</p>
+  <section aria-labelledby="install">
+    <h2 id="install">Install it</h2>
+    <ol class="steps">
+      <li>Go to the <a href="https://github.com/ReturningRetro/RetroType/releases/latest">latest release</a> and tap the <code>.apk</code> file to download it.</li>
+      <li>Open the downloaded file. If your phone asks, allow your browser or file manager to install apps.</li>
+      <li>Open <strong>RetroType</strong> and follow the short setup. It walks you through turning the keyboard on.</li>
+    </ol>
+    <p>Rather get it by email? It's also on <a href="https://returningretro.gumroad.com/l/retrotype">Gumroad</a>: choose the Free version and pay $0.</p>
+    <p class="note"><strong>About the install warnings:</strong> Android shows a warning for any app that doesn't come from the Play Store. RetroType is registered with Google's developer verification, and since it has no internet access, it can't send anything anywhere.</p>
   </section>
 
-  <section aria-labelledby="who">
-    <h2 id="who">Who it's for</h2>
-    <p>People who remember the good old days of physical keyboard phones, people who want a modern keyboard phone that types the way it should, or both.</p>
+  <section aria-labelledby="phones">
+    <h2 id="phones">Supported phones</h2>
+    <p>RetroType is tuned for:</p>
+    <ul class="phones">
+      <li>Clicks keyboard cases (Pixel 9 &amp; Razr)</li>
+      <li>Dumber Mini</li>
+      <li>Minimal Phone</li>
+      <li>P26</li>
+      <li>Q25</li>
+      <li>Sidephone (Compact QWERTY tile)</li>
+      <li>Titan 2 Elite</li>
+    </ul>
+    <p>It also works on <strong>any Android phone</strong> with its own on-screen keyboard. Keyholders vote on which phone gets support next.</p>
+  </section>
+
+  <section aria-labelledby="free">
+    <h2 id="free">Free, with a thank-you for Keyholders</h2>
+    <p>The free version is the full keyboard: every typing feature, every supported phone, plus a few hidden extras to find. Keyholders get more extras to unlock (and new ones every month or two), new versions a week early, their name on the About page if they want it, and a vote on the next phone.</p>
+    <p><a href="keyholder/">See what Keyholders get</a></p>
   </section>
 
   <section aria-labelledby="promise">
@@ -202,8 +257,30 @@
       <li><strong>No tracking.</strong> RetroType doesn't monitor what you type or collect any data.</li>
       <li><strong>No internet access.</strong> The app can't go online at all. Your words stay on your phone.</li>
       <li><strong>No ads.</strong> Not now, not ever.</li>
+      <li><strong>No account.</strong> Download it and type.</li>
       <li><strong>Made by one person.</strong> Just me, with help from a small group of testers.</li>
     </ul>
+  </section>
+
+  <section aria-labelledby="updates">
+    <h2 id="updates">Getting updates</h2>
+    <p>RetroType never goes online, so it can't check for updates itself. Two easy options:</p>
+    <ul class="facts">
+      <li><strong>Obtainium:</strong> add <code>https://github.com/ReturningRetro/RetroType</code> and it'll tell you when there's a new version.</li>
+      <li><strong>Email:</strong> <a href="https://returningretro.gumroad.com/subscribe">sign up here</a> and I'll let you know.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="story">
+    <h2 id="story">Why I made it</h2>
+    <p>Physical keyboards went from being the standard on phones to a clunky, retrofitted mix of hardware and software. The existing keyboard apps were okay, but nothing came close to the typing that was so common just a few years ago.</p>
+    <p>That reached a breaking point for me when a prototype QWERTY phone landed on my desk with no keyboard optimizations at all. So I decided to make my own. It turned out better than I ever imagined, so I added support for more phones and decided to share it with anyone who might enjoy it or benefit from it.</p>
+    <p>I've used these phones in their day, I use the modern ones now, and I've used just about everything in between. RetroType is built from that experience.</p>
+  </section>
+
+  <section aria-labelledby="help">
+    <h2 id="help">Help and feedback</h2>
+    <p>Found a bug or have an idea? <a href="https://github.com/ReturningRetro/RetroType/issues/new/choose">Open an issue</a>; a short form asks which phone you're on. Something private? Email <a href="mailto:retrotype@returningretro.com">retrotype@returningretro.com</a>. I read everything, but it's just me, so please be patient if I'm slow to reply.</p>
   </section>
 
   <section aria-labelledby="spirit">
@@ -219,7 +296,7 @@
     <li><a href="https://www.reddit.com/r/ReturningRetro">r/ReturningRetro on Reddit</a></li>
     <li><a href="mailto:retrotype@returningretro.com">retrotype@returningretro.com</a></li>
   </ul>
-  <p>RetroType Keyboard is made by Returning Retro. It isn't affiliated with or endorsed by any phone maker.</p>
+  <p>RetroType Keyboard is made by Returning Retro. It isn't affiliated with or endorsed by any phone maker, and phone names are used only to say which phones it works with.</p>
 </footer></div>
 </body>
 </html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Become a Keyholder: RetroType Keyboard</title>
+<meta name="description" content="Keyholders keep RetroType Keyboard going and get a few extras as a thank-you: more themes, key sounds, app icons, early versions and a vote on the next phone.">
+<meta property="og:title" content="Become a RetroType Keyholder">
+<meta property="og:description" content="Keep RetroType going and get a few extras as a thank-you. Whatever you want, starting at $10, once.">
+<meta property="og:image" content="https://retrotype.app/assets/icon.png">
+<meta property="og:url" content="https://retrotype.app/keyholder/">
+<meta name="theme-color" content="#06263a">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<style>
+  @font-face {
+    font-family: "Inter Display";
+    src: url("../assets/InterDisplay-ExtraBold.otf") format("opentype");
+    font-weight: 800;
+    font-display: swap;
+  }
+
+  :root {
+    --deep: #06263a;      /* the icon's outer teal */
+    --glow: #18809f;      /* the icon's inner glow */
+    --cap: #2b3036;       /* keycap face */
+    --cap-edge: #15181c;  /* keycap side */
+    --ink: #eef4f3;       /* key labels and text */
+    --soft: #b4cdd2;      /* secondary text, 8:1 on --deep */
+    --bar: #3cc4ef;       /* the blue bar under "RTK" */
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "Inter Display", var(--body);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--deep); }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--body);
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 0%, rgba(24,128,159,.55), transparent 70%),
+      radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.4px) 0 0 / 14px 14px,
+      var(--deep);
+  }
+
+  a { color: var(--bar); text-underline-offset: .18em; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--bar); outline-offset: 3px; border-radius: 4px; }
+
+  main { max-width: 42rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- Hero: the name typed out on keycaps ---------- */
+  .hero { padding: clamp(4rem, 12vh, 8rem) 0 3rem; text-align: center; }
+
+  .keys {
+    display: flex;
+    justify-content: center;
+    gap: clamp(4px, 1.2vw, 9px);
+    margin: 0 0 2.25rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .key {
+    --size: clamp(30px, 9.2vw, 60px);
+    width: var(--size);
+    height: calc(var(--size) * 1.08);
+    display: grid;
+    place-items: center;
+    border-radius: calc(var(--size) * .2);
+    background: linear-gradient(180deg, #3a4048 0%, var(--cap) 55%, #24282d 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.14),
+      0 calc(var(--size) * .1) 0 var(--cap-edge),
+      0 calc(var(--size) * .16) calc(var(--size) * .22) rgba(0,0,0,.45);
+    font: 800 calc(var(--size) * .46)/1 var(--display);
+    color: var(--ink);
+    animation: press .32s ease-out both;
+    animation-delay: calc(var(--i) * 95ms + 300ms);
+  }
+
+  /* The last key carries the icon's blue bar */
+  .key:last-child { position: relative; }
+  .key:last-child::after {
+    content: "";
+    position: absolute;
+    left: 22%; right: 22%; bottom: 16%;
+    height: max(2px, calc(var(--size) * .055));
+    border-radius: 2px;
+    background: var(--bar);
+    box-shadow: 0 0 8px rgba(60,196,239,.7);
+  }
+
+  @keyframes press {
+    0%   { transform: translateY(0); }
+    45%  { transform: translateY(calc(var(--size) * .08));
+           box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 calc(var(--size) * .02) 0 var(--cap-edge), 0 calc(var(--size) * .05) calc(var(--size) * .1) rgba(0,0,0,.4); }
+    100% { transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .key { animation: none; }
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    font: 800 clamp(1.9rem, 5.5vw, 2.75rem)/1.1 var(--display);
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+
+  .lede { margin: 0 auto 2rem; text-wrap: pretty; max-width: 34rem; color: var(--soft); font-size: 1.1875rem; }
+
+  .notify {
+    display: inline-block;
+    padding: .9rem 1.6rem;
+    border-radius: 12px;
+    background: var(--bar);
+    color: var(--deep);
+    font: 800 1.0625rem/1 var(--display);
+    text-decoration: none;
+    box-shadow: 0 4px 0 #1b7fa1;
+  }
+  .notify:hover { color: var(--deep); background: #6fd6f5; }
+  .notify:active { transform: translateY(3px); box-shadow: 0 1px 0 #1b7fa1; }
+
+  .small { margin: .9rem 0 0; color: var(--soft); font-size: .9375rem; }
+
+  /* ---------- Body sections ---------- */
+  section { padding: 2.5rem 0; border-top: 1px solid rgba(180,205,210,.18); }
+
+  h2 { margin: 0 0 1rem; font: 800 1.5rem/1.25 var(--display); }
+
+  p { margin: 0 0 1rem; }
+
+  .facts { margin: 0; padding: 0; list-style: none; }
+  .facts li { padding: .55rem 0 .55rem 1.6rem; position: relative; }
+  .facts li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.05rem;
+    width: .7rem; height: .7rem;
+    border-radius: 3px;
+    background: var(--bar);
+    box-shadow: 0 2px 0 #1b7fa1;
+  }
+  .facts strong { font-family: var(--display); font-weight: 800; }
+
+  .signoff { margin-top: 1.5rem; font-family: var(--display); font-weight: 800; }
+
+  footer {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid rgba(180,205,210,.18);
+    color: var(--soft);
+    font-size: .9375rem;
+  }
+  .wrap { padding: 0 1.5rem; }
+  footer ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+
+  .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .9rem 1rem; }
+  .ghost {
+    display: inline-block;
+    padding: .9rem 1.6rem;
+    border-radius: 12px;
+    border: 2px solid var(--bar);
+    color: var(--ink);
+    font: 800 1.0625rem/1 var(--display);
+    text-decoration: none;
+  }
+  .ghost:hover { color: var(--deep); background: var(--bar); }
+  ol.steps { margin: 0 0 1rem; padding-left: 1.4rem; }
+  ol.steps li { padding: .3rem 0; }
+  .note {
+    margin: 1rem 0 0;
+    padding: .9rem 1.1rem;
+    border-left: 4px solid var(--bar);
+    border-radius: 0 10px 10px 0;
+    background: rgba(255,255,255,.05);
+    color: var(--soft);
+    font-size: .9875rem;
+  }
+  .note strong { color: var(--ink); }
+  .phones { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+  .phones li {
+    padding: .35rem .8rem;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #3a4048 0%, var(--cap) 60%, #24282d 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 3px 0 var(--cap-edge);
+    font-size: .975rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <ol class="keys" aria-hidden="true">
+      <li class="key" style="--i:0">R</li>
+      <li class="key" style="--i:1">E</li>
+      <li class="key" style="--i:2">T</li>
+      <li class="key" style="--i:3">R</li>
+      <li class="key" style="--i:4">O</li>
+      <li class="key" style="--i:5">T</li>
+      <li class="key" style="--i:6">Y</li>
+      <li class="key" style="--i:7">P</li>
+      <li class="key" style="--i:8">E</li>
+    </ol>
+    <h1>Become a Keyholder</h1>
+    <p class="lede">RetroType is free, and the free version is the full keyboard. Keyholders keep the project going, and get a few extras as a thank-you.</p>
+    <div class="btns">
+      <a class="notify" href="https://returningretro.gumroad.com/l/retrotype">Become a Keyholder</a>
+      <a class="ghost" href="../">Back to RetroType</a>
+    </div>
+    <p class="small">Whatever you want, starting at $10. Once, not a subscription.</p>
+  </header>
+
+  <section aria-labelledby="get">
+    <h2 id="get">What Keyholders get</h2>
+    <ul class="facts">
+      <li><strong>More extras to unlock.</strong> On day one: the Cyberpunk theme, the Midnight app icon, a pink accent color and the Thock key sound, on top of everything in the free version.</li>
+      <li><strong>New extras every month or two.</strong> Each feature drop brings a new theme and another extra, each behind its own secret, and Keyholders get every one of them.</li>
+      <li><strong>The Keymaster title.</strong> Find every secret and the title is yours, with a celebration to match.</li>
+      <li><strong>New versions a week early.</strong> Straight to your inbox from Gumroad.</li>
+      <li><strong>Your name on the About page,</strong> if you want it there.</li>
+      <li><strong>A vote on what's next,</strong> including which phone gets support next.</li>
+    </ul>
+    <p>The money goes straight into test phones and new features.</p>
+  </section>
+
+  <section aria-labelledby="secrets">
+    <h2 id="secrets">Extras you find, not just switch on</h2>
+    <p>In the spirit of the old games with their cheat codes, every extra is hidden behind its own secret. Type the right word anywhere, or find the right spot in the settings, and an extra unlocks with its own little animation. The Unlocks page gives you a hint for each one. If you'd rather skip the hunt, there's a skeleton key that opens everything at once (finding them all yourself earns a Keymaster title instead).</p>
+    <p class="note"><strong>Privacy:</strong> RetroType never saves or sends what you type. Secret words are spotted the way spell check spots typos: on your phone, as you type. Only the unlock is kept.</p>
+  </section>
+
+  <section aria-labelledby="how">
+    <h2 id="how">How it works</h2>
+    <ol class="steps">
+      <li>Choose the <strong>Keyholder</strong> version on <a href="https://returningretro.gumroad.com/l/retrotype">Gumroad</a> and name your price ($10 or more).</li>
+      <li>Download the Keyholder app from your Gumroad receipt or library. Already have the free version? Install the Keyholder app over it; your settings, learned words and any secrets you've found come along.</li>
+      <li>Tap <strong>Get your Keyholder code</strong> on your receipt, paste the license key from it, and choose the name RetroType should thank you by. Your code appears right away.</li>
+      <li>Open RetroType and paste your code when it asks. Your Keyholder secrets are then ready to find; the hints are on Settings › Unlocks.</li>
+    </ol>
+    <p class="note"><strong>Your code is checked on your phone,</strong> with no internet needed. It's personal to you, so please don't share it. Lost it? Just <a href="../claim/">claim it again</a> with the same license key.</p>
+  </section>
+
+  <section aria-labelledby="questions">
+    <h2 id="questions">Questions</h2>
+    <p><strong>Do free users miss out on typing features?</strong> No. Every typing feature and every supported phone is in the free version, and always will be.</p>
+    <p><strong>Is it a subscription?</strong> No. You pay once, and new extras keep coming with new versions.</p>
+    <p><strong>Can I give it as a gift?</strong> Yes. Buy it on Gumroad as usual, then pass the Keyholder app and the license key from your receipt to your friend, so they can claim a code in their own name.</p>
+    <p><strong>Something else?</strong> Email <a href="mailto:retrotype@returningretro.com">retrotype@returningretro.com</a>. It's just me, so please be patient if I'm slow to reply.</p>
+    <p class="signoff">Thank you for keeping RetroType going.<br>Retro Jake</p>
+  </section>
+</main>
+
+<div class="wrap"><footer>
+  <ul>
+    <li><a href="../">RetroType Keyboard</a></li>
+    <li><a href="https://www.youtube.com/@ReturningRetro">Returning Retro on YouTube</a></li>
+    <li><a href="https://www.reddit.com/r/ReturningRetro">r/ReturningRetro on Reddit</a></li>
+    <li><a href="mailto:retrotype@returningretro.com">retrotype@returningretro.com</a></li>
+  </ul>
+  <p>RetroType Keyboard is made by Returning Retro. It isn't affiliated with or endorsed by any phone maker. Sales are handled by Gumroad.</p>
+</footer></div>
+</body>
+</html>
