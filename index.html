@@ -152,6 +152,16 @@
 
   .signoff { margin-top: 1.5rem; font-family: var(--display); font-weight: 800; }
 
+  /* ---------- Screenshots ---------- */
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; margin: 1.25rem 0 .75rem; padding: 0; list-style: none; }
+  .shots img, .shots video, .clip video { display: block; width: 100%; height: auto; border-radius: 12px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 10px 24px rgba(0,0,0,.45); }
+  .shots figure { margin: 0; }
+  .shots figcaption { margin-top: .45rem; font-size: .875rem; color: var(--soft); text-align: center; }
+  .clip { max-width: 22rem; margin: 1.25rem auto 0; }
+  .clip figcaption { margin-top: .45rem; font-size: .875rem; color: var(--soft); text-align: center; }
+  @media (max-width: 30rem) { .shots { grid-template-columns: repeat(2, 1fr); } }
+
   footer {
     max-width: 42rem;
     margin: 0 auto;
@@ -219,6 +229,19 @@
     <p class="small">Free. No account, no sign-up. Android 12 or newer.</p>
   </header>
 
+  <section aria-labelledby="see">
+    <h2 id="see">See it</h2>
+    <p>On a Q25: suggestions as you type, the symbol and emoji pages, and three of the looks.</p>
+    <ul class="shots">
+      <li><figure><img src="assets/shots/typing.png" width="720" height="682" loading="lazy" alt="Typing on the Q25's keys with RetroType's suggestions showing"><figcaption>Suggestions as you type</figcaption></figure></li>
+      <li><figure><img src="assets/shots/symbols.png" width="720" height="682" loading="lazy" alt="RetroType's symbol page, each symbol with the key to press in its corner"><figcaption>Symbol pages</figcaption></figure></li>
+      <li><figure><img src="assets/shots/emoji.png" width="720" height="682" loading="lazy" alt="RetroType's emoji pages"><figcaption>Emoji pages</figcaption></figure></li>
+      <li><figure><img src="assets/shots/theme-dark.png" width="720" height="682" loading="lazy" alt="RetroType's Modern theme, dark"><figcaption>Modern, dark</figcaption></figure></li>
+      <li><figure><img src="assets/shots/theme-light.png" width="720" height="682" loading="lazy" alt="RetroType's Modern theme, light"><figcaption>Modern, light</figcaption></figure></li>
+      <li><figure><img src="assets/shots/theme-8bit.png" width="720" height="682" loading="lazy" alt="RetroType's 8-Bit theme"><figcaption>8-Bit (a secret to find)</figcaption></figure></li>
+    </ul>
+  </section>
+
   <section aria-labelledby="install">
     <h2 id="install">Install it</h2>
     <ol class="steps">
@@ -243,6 +266,10 @@
       <li>Titan 2 Elite</li>
     </ul>
     <p>It also works on <strong>any Android phone</strong> with its own on-screen keyboard. Keyholders vote on which phone gets support next.</p>
+    <figure class="clip">
+      <video src="assets/shots/q25-keys-scroll.mp4" poster="assets/shots/q25-keys-poster.jpg" width="720" height="682" autoplay muted loop playsinline preload="metadata" aria-label="Scrolling through the Q25 keys page in RetroType's settings"></video>
+      <figcaption>Each phone gets its own page of options for its keys. Here's the Q25's.</figcaption>
+    </figure>
   </section>
 
   <section aria-labelledby="free">
